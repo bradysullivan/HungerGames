@@ -15,21 +15,30 @@
 import sys
 import importlib
 
-def run_tests(script_name):
-    try:
-        user_module = importlib.import_module(script_name[:-3])
-        if hasattr(user_module, 'Player'):
-            try:
-                user_module = user_module.Player()
-            except:
-                print("\nPlayer did not instantiate, make sure it is a class. "
-                      "Proceeding assuming non OO code.\n")
-    except:
-        print ("\nCould not import %s\n" % script_name)
-        raise
-    test_hunt_choices(user_module)
-    test_hunt_outcomes(user_module)
-    test_round_end(user_module)
+#from Game.engine import engine
+
+
+def run_tests(filename):
+    players = []
+    f = open(filename,'r')
+    for script_name in f:
+        try:
+            user_module = importlib.import_module(script_name[:-4])
+            if hasattr(user_module, 'Player'):
+                try:
+                    user_module = user_module.Player()
+                except:
+                    print("\nPlayer did not instantiate, make sure it is a class. "
+                          "Proceeding assuming non OO code.\n")
+        except:
+            print ("\nCould not import %s\n" % script_name)
+            raise
+        players.append(user_module)
+
+    for p in players:
+        test_hunt_choices(p)
+        test_hunt_outcomes(p)
+        test_round_end(p)
 
 
 def test_hunt_choices(user_module):
@@ -86,9 +95,9 @@ if __name__ == "__main__":
     try:
         filename = sys.argv[1]
     except IndexError:
-        print ("\nYou must include the filename that contains your code "
+        print ("\nYou must include the filename that contains your players "
                "as the only argument to this script.\n\n"
-               "Example: python tester.py filename_of_your_script.py\n")
+               "Example: python tester.py players.txt\n")
         raise
     else:
         run_tests(filename)

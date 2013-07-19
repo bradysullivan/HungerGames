@@ -1,0 +1,4 @@
+players.HS_example_alternate_choices.py
+players.HS_example_always_hunt.py
+players.HS_example_never_hunt.py
+players.HS_example_oop.py
