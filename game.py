@@ -94,13 +94,13 @@ class GameEngine():
 
   def status(self):
     print "Current round: " + str(self.round)
-    print "Players alive: \n"
+    print "Players alive:"
     for p in self.living:
-      print "\t" + p.module.name + ": Food("+ str(p.food) +"), Reputation("+ str(p.reputation()) +")\n"
-    print "Players dead: \n"
+      print "\t" + p.module.name + ": Food("+ str(p.food) +"), Reputation("+ str(p.reputation()) +")"
+    print "Players dead:"
     for p in self.dead:
-      print "\t" + p.module.name + "\n"
-    print "Award won this round: " + str(self.award) + "\n"
+      print "\t" + p.module.name
+    print "Award won this round: " + str(self.award)
     print "\n"
 
   def check_for_game_end(self):
