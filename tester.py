@@ -15,7 +15,7 @@
 import sys
 import importlib
 
-#from Game.engine import engine
+from game import GameEngine
 
 
 def run_tests(filename):
@@ -34,11 +34,18 @@ def run_tests(filename):
             print ("\nCould not import %s\n" % script_name)
             raise
         players.append(user_module)
+    test_player_functions(players)
 
-    for p in players:
+    game = GameEngine(players)
+    game.start()
+
+
+def test_player_functions(players):
+  for p in players:
         test_hunt_choices(p)
         test_hunt_outcomes(p)
         test_round_end(p)
+
 
 
 def test_hunt_choices(user_module):
@@ -48,7 +55,7 @@ def test_hunt_choices(user_module):
                                              [0,0,0,0,0,0,0,0,0,0,0,0])
     except AttributeError:
         print("\nFunction hunt_choices is not defined properly.\n")
-        raise # shows the exact exception given by python 
+        raise # shows the exact exception given by python
     except:
         print("\nError running hunt_choices.\n")
         raise
