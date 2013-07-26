@@ -33,7 +33,7 @@ class GameEngine():
     self.calculate_outcomes()
     self.reward_tribe()
     self.check_for_starve()
-    self.status()
+    #self.status()
 
   def prep_round(self):
     self.matrix = [[0 for x in xrange(len(self.living))] for x in xrange(len(self.living))]
