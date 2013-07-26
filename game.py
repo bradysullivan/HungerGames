@@ -19,7 +19,7 @@ class GameEngine():
     self.matrix = []
     self.total_hunts = 0
 
-    self.number_of_rounds = 300
+    self.number_of_rounds = 900
 
 
   def start(self):
